@@ -10,7 +10,6 @@ from discord.ext import commands
 from etherscan import Etherscan
 from decimal import Decimal
 
-
 bot = commands.Bot(command_prefix='!scan ')
 bot.remove_command('help')
 NETWORK = "mainnet"  # or ropsten, kovan, rinkeby etc.
@@ -100,7 +99,8 @@ async def hello(ctx):
 async def help(ctx):
     embed = discord.Embed(
         title="What is Block Scanner?",
-        description="Block Scanner is a Discord bot that provides blockchain information to users in real-time (currently only supports Ethereum Mainnet).",
+        description=
+        "Block Scanner is a Discord bot that provides blockchain information to users in real-time (currently only supports Ethereum Mainnet).",
         color=0xa7bf64,
     )
     embed.set_author(
@@ -114,7 +114,8 @@ async def help(ctx):
     )
     embed.add_field(
         name="!scan balance [address or ens name]",
-        value="Returns the Ethereum balance of the specified Ethereum address or ENS name",
+        value=
+        "Returns the Ethereum balance of the specified Ethereum address or ENS name",
         inline=False,
     )
     embed.add_field(
@@ -123,8 +124,10 @@ async def help(ctx):
         inline=False,
     )
     embed.add_field(
-        name="!scan balancemulti [address or ens name] [address or ens name]...",
-        value="Returns the Ethereum balances of multiple Ethereum addresses or ENS names",
+        name=
+        "!scan balancemulti [address or ens name] [address or ens name]...",
+        value=
+        "Returns the Ethereum balances of multiple Ethereum addresses or ENS names",
         inline=False,
     )
     embed.add_field(
@@ -144,7 +147,8 @@ async def help(ctx):
     )
     embed.add_field(
         name="!scan blocksmined [address or ens name]",
-        value="Returns the last 20 blocks mined by the specified Ethereum address or ENS name",
+        value=
+        "Returns the last 20 blocks mined by the specified Ethereum address or ENS name",
         inline=False,
     )
     embed.add_field(
@@ -154,15 +158,20 @@ async def help(ctx):
     )
     embed.add_field(
         name="!scan portfolio [address or ens name]",
-        value="Returns the token balances of the specified Ethereum address. It may take longer to respond on accounts with a large number of tokens.",
+        value=
+        "Returns the token balances of the specified Ethereum address. It may take longer to respond on accounts with a large number of tokens.",
         inline=False,
     )
     embed.add_field(
         name="!scan portfoliopic [address or ens name]",
-        value="Returns a pie chart of the specified Ethereum address's portfolio. It may take longer to respond on accounts with a large number of tokens.",
+        value=
+        "Returns a pie chart of the specified Ethereum address's portfolio. It may take longer to respond on accounts with a large number of tokens.",
         inline=False,
     )
-    embed.set_footer(text="Please write the ENS name with the '.eth' extension. e.g. vitalik.eth")
+    embed.set_footer(
+        text=
+        "Please write the ENS name with the '.eth' extension. e.g. vitalik.eth"
+    )
     await ctx.send(embed=embed)
 
 
@@ -180,7 +189,9 @@ async def balance(ctx, address_or_ens):
     balance = api.get_eth_balance(address)
     balance_in_ether = float(from_wei(balance))
     balance_in_usd = balance_in_ether * eth_usd_price
-    await ctx.send(f"Balance for {short_address}: {balance_in_ether:.4f} ETH ({balance_in_usd:.2f}$)")
+    await ctx.send(
+        f"Balance for {short_address}: {balance_in_ether:.4f} ETH ({balance_in_usd:.2f}$)"
+    )
 
 
 @bot.command()
@@ -304,16 +315,16 @@ async def portfolio(ctx, address_or_ens):
             for symbol, balance in nft_balances.items():
                 short_symbol = symbol[:-6]
                 response += f"{short_symbol}: {balance}\n"
-  
+
         if len(response) > 2000:
-          error_message = f"Portfolio exceeds Discord's message limit. To see all balances : https://etherscan.io/address/{address}"
-          await ctx.send(error_message)
+            error_message = f"Portfolio exceeds Discord's message limit. To see all balances : https://etherscan.io/address/{address}"
+            await ctx.send(error_message)
         else:
-          await ctx.send(response)
+            await ctx.send(response)
 
     except Exception as e:
         await ctx.send(f"Error: {e}")
-      
+
 
 @bot.command()
 async def portfoliopic(ctx, address_or_ens):
@@ -353,9 +364,11 @@ async def portfoliopic(ctx, address_or_ens):
         usd_eth_balance = eth_usd_price * eth_balance if eth_usd_price is not None else None
         if usd_eth_balance is not None:
             token_balances['ETH'] = usd_eth_balance
-        
+
         # Get the top 10 token balances including ETH balance
-        sorted_balances = sorted(token_balances.items(), key=lambda x: x[1], reverse=True)
+        sorted_balances = sorted(token_balances.items(),
+                                 key=lambda x: x[1],
+                                 reverse=True)
         top_balances = dict(sorted_balances[:10])
 
         # Add ETH balance to labels and sizes
@@ -366,14 +379,14 @@ async def portfoliopic(ctx, address_or_ens):
             top_balances[eth_label] = eth_balance
             labels.append(eth_label)
             sizes.append(eth_balance)
-        
+
         # Create the pie chart
         labels = [
             f"{symbol} (${usd_balance:.2f})"
             for symbol, usd_balance in top_balances.items()
         ]
         sizes = list(top_balances.values())
-        
+
         fig, ax = plt.subplots()
         ax.pie(sizes,
                labels=labels,
