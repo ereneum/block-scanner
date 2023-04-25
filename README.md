@@ -1,15 +1,16 @@
-# Python Discord Bot
+# What is Block Scanner?
 
-This is a starting point for making your own Discord bot using Python and the [discordpy](https://discordpy.readthedocs.io/) library.
-Read [their getting-started guides](https://discordpy.readthedocs.io/en/stable/#getting-started) to get the most out of this template.
+Block Scanner is a Discord bot that provides blockchain information to users in real-time (currently only supports Ethereum Mainnet). The bot supports a variety of commands, including getting token balances for a given Ethereum address (with a pie chart or as text), showing the address of an ENS Domain and retrieving the latest Ethereum block information. It's developed to help Traders, Developers, MEV Searchers, Block Builders and any Ethereum user.
 
-## Getting Started
+Block Scanner uses various APIs to gather information, including CoinGecko for token prices, Etherscan for block information, Infura for ENS resolving and etc.
+Block Scanner is designed to be easy to use and accessible to both novice and experienced blockchain users. Whether you're looking to check the price of your favorite token or keep track of the latest Ethereum block, Block Scanner has you covered.
 
-To get set up, you'll need to follow [these bot account setup instructions](https://discordpy.readthedocs.io/en/stable/discord.html),
-and then copy the token for your bot and added it as a secret with the key of `TOKEN` in the "Secrets (Environment variables)" panel.
+## Commands
 
-## FAQ
+For all bot commands and how to use them, visit: https://blockscanner.erenthe.dev/guide/commands
 
-If you get the following error message while trying to start the server: `429 Too Many Requests` (accompanied by a lot of HTML code), 
-try the advice given in this Stackoverflow question:
-https://stackoverflow.com/questions/66724687/in-discord-py-how-to-solve-the-error-for-toomanyrequests
+## Support
+
+Since there are no paid features in Block Scanner, the sustainability of the project (server costs, assistance to users), development of new features and coffee costs are now entirely on me.
+
+If you want to help (my Ethereum and Polygon address) : 0xB60f993f6D7B20FFBb98e9aC8bF4B52657F8A1D5
