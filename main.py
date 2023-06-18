@@ -1,4 +1,5 @@
 import os
+import keep_alive
 import aiohttp
 import discord
 import ens
@@ -415,4 +416,5 @@ async def portfoliopic(ctx, address_or_ens):
 
 
 DiscordToken = os.environ['TOKEN']
+keep_alive.keep_alive()
 bot.run(DiscordToken)
